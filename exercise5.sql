@@ -1,30 +1,31 @@
-CREATE TABLE customer (
-    customer_id INT PRIMARY KEY AUTO_INCREMENT,
-    first_name VARCHAR(50) NOT NULL,
-    last_name VARCHAR(50) NOT NULL,
-    email VARCHAR(100) NOT NULL,
-    address_id INT NOT NULL,
-    FOREIGN KEY (address_id) REFERENCES address(address_id)
+create table costumer
+(
+  frist_name varchar(50) not null,
+  last_name varchar(50) not null,
+  email varchar(50) not null,
+  address varchar(50) not null
+); 
+
+create table city
+(
+  address varchar(50) not null ,
+  City varchar(50) not null
 );
 
-CREATE TABLE address (
-    address_id INT PRIMARY KEY AUTO_INCREMENT,
-    address VARCHAR(255) NOT NULL,
-    city_id INT NOT NULL,
-    FOREIGN KEY (city_id) REFERENCES city(city_id)
-);
+INSERT INTO costumer (frist_name, last_name, email, address)
+VALUES 
+('Ali', 'Ahmed', 'ali.ahmed@example.com', '123 Main Street'),
+('Sara', 'Hassan', 'sara.hassan@example.com', '456 Elm Street'),
+('Khaled', 'Omar', 'khaled.omar@example.com', '789 Oak Avenue');
 
-CREATE TABLE city (
-    city_id INT PRIMARY KEY AUTO_INCREMENT,
-    city VARCHAR(100) NOT NULL
-);
+INSERT INTO city (address, City)
+VALUES 
+('123 Main Street', 'Cairo'),
+('456 Elm Street', 'Alexandria'),
+('789 Oak Avenue', 'Asyut');
 
-INSERT INTO city (city) VALUES ('New York'), ('Los Angeles'), ('Chicago');
 
-INSERT INTO address (address, city_id) 
-VALUES ('123 Main St', 1), ('456 Elm St', 2), ('789 Oak St', 3);
-
-INSERT INTO customer (first_name, last_name, email, address_id) 
-VALUES ('John', 'Doe', 'john.doe@example.com', 1),
-       ('Jane', 'Smith', 'jane.smith@example.com', 2),
-       ('Emily', 'Johnson', 'emily.johnson@example.com', 3);
+select costumer.frist_name,costumer.last_name,costumer.email,costumer.address,
+city.address,city.City
+from
+costumer join city ON city.City = costumer.City;
